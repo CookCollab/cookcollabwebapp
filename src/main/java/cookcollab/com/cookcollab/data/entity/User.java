@@ -1,20 +1,14 @@
 package cookcollab.com.cookcollab.data.entity;
 
 
-import org.springframework.data.annotation.Id;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="user_id")
     private long userID;
     @Column(name="first_name")
@@ -24,7 +18,7 @@ public class User {
     @Column(name="email")
     private String email;
     @Column(name="phone")
-    private String phne;
+    private String phone;
     @Column(name="bio")
     private String bio;
 
@@ -61,11 +55,11 @@ public class User {
     }
 
     public String getPhne() {
-        return phne;
+        return phone;
     }
 
     public void setPhne(String phne) {
-        this.phne = phne;
+        this.phone = phne;
     }
 
     public String getBio() {
