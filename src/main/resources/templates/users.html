@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Cook Collab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/site.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Hello World!!</h1>
-<table>
+<div class="page-header">
+    <h1><b>Users</b></h1>
+</div>
+<div class="container">
+<table class="table">
     <thead>
     <tr>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Email</td>
+        <td><b>First Name</b></td>
+        <td><b>Last Name</b></td>
+        <td><b>Email</b></td>
+        <td><b>Phone</b></td>
+        <td><b>Bio</b></td>
     </tr>
     </thead>
     <tbody>
@@ -19,8 +29,11 @@
         <td th:text="${user.firstName}">First Name</td>
         <td th:text="${user.lastName}">Last Name</td>
         <td th:text="${user.email}">Email</td>
+        <td th:text="${user.phone}">Phone</td>
+        <td th:text="${user.bio}">Bio</td>
     </tr>
     </tbody>
 </table>
+</div>
 </body>
 </html>
