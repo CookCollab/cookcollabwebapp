@@ -9,7 +9,7 @@ import java.sql.Date;
 
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long> {
-    List<Event> findByRecipe(String recipe);
+    List<Event> findByEventDate(Date EventDate);
     Event findByEventID(long eventID);
     Event findByUserID(long userID);
 }
