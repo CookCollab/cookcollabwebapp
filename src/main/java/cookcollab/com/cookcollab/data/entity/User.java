@@ -54,12 +54,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPhne() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhne(String phne) {
-        this.phone = phne;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getBio() {

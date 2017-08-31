@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class UserController {
+public class UserRestController {
 
     private UserRepository userRepo;
 
     @Autowired
-    public UserController(UserRepository userRepo) {
+    public UserRestController(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/api/user/{id}")
     public User getUser(@PathVariable(value="id") long id){
         return userRepo.findByUserID(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user")
+    @RequestMapping(method = RequestMethod.GET, value = "/api/user")
     public List<User> getAllUsers(){
         return (List<User>) userRepo.findAll();
     }
