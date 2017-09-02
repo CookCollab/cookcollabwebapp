@@ -32,6 +32,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.springframework.boot:spring-boot-devtools")
+	compile("org.webjars:bootstrap:4.0.0-beta")
+	compile("org.webjars.bower:jquery")
+	compile("org.webjars.npm:popper.js")
 	runtime('org.postgresql:postgresql:9.4-1201-jdbc41') {
 		exclude group: "ch.qos.logback"
 	}
