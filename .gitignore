@@ -27,3 +27,4 @@ nbdist/
 
 ### Custom ###
 .class
+src/main/resources/application.properties
