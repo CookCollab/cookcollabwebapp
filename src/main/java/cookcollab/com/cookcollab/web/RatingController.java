@@ -1,3 +1,9 @@
+/*
+* This class defines the routes used to perform CRUD operations on Ratings
+* Author: Michael Correia
+* Date: 8/31/2017
+*/
+
 package cookcollab.com.cookcollab.web;
 
 import cookcollab.com.cookcollab.data.entity.Rating;
@@ -13,20 +19,20 @@ import java.util.List;
 @RestController
 public class RatingController {
 
-    private RatingRepository ratingRepo;
+	private RatingRepository ratingRepo;
 
-    @Autowired
-    public RatingController(RatingRepository ratingRepo) {
-        this.ratingRepo = ratingRepo;
-    }
+	@Autowired
+	public RatingController(RatingRepository ratingRepo) {
+		this.ratingRepo = ratingRepo;
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/rating/{id}")
-    public Rating getRating(@PathVariable(value="id") long id){
-        return ratingRepo.findByRatingID(id);
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/rating/{id}")
+	public Rating getRating(@PathVariable(value="id") long id){
+		return ratingRepo.findByRatingID(id);
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/rating")
-    public List<Rating> getAllRatings(){
-        return (List<Rating>) ratingRepo.findAll();
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/rating")
+	public List<Rating> getAllRatings(){
+		return (List<Rating>) ratingRepo.findAll();
+	}
 }

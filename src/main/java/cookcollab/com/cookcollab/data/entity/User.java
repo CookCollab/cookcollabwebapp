@@ -1,5 +1,10 @@
-package cookcollab.com.cookcollab.data.entity;
+/*
+* This file is used for the users in our database
+* Author: Vatsal Vora
+* Date: 8/31/2017
+*/
 
+package cookcollab.com.cookcollab.data.entity;
 
 import javax.persistence.*;
 
@@ -7,66 +12,71 @@ import javax.persistence.*;
 @Table(name="user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="user_id")
-    private long userID;
-    @Column(name="first_name")
-    private String firstName;
-    @Column(name="last_name")
-    private String lastName;
-    @Column(name="email")
-    private String email;
-    @Column(name="phone")
-    private String phone;
-    @Column(name="bio")
-    private String bio;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name="user_id")
+	private long userID;
 
-    public long getUserID() {
-        return userID;
-    }
+	@Column(name="first_name")
+	private String firstName;
 
-    public void setUserID(long userID) {
-        this.userID = userID;
-    }
+	@Column(name="last_name")
+	private String lastName;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	@Column(name="email")
+	private String email;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	@Column(name="phone")
+	private String phone;
 
-    public String getLastName() {
-        return lastName;
-    }
+	@Column(name="bio")
+	private String bio;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public long getUserID() {
+		return userID;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public String getBio() {
-        return bio;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
 }

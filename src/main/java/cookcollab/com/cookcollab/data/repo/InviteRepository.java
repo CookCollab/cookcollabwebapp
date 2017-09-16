@@ -1,3 +1,9 @@
+/*
+* This interface defines the methods used to perform CRUD operations on Invites
+* Author: Michael Correia
+* Date: 8/31/2017
+*/
+
 package cookcollab.com.cookcollab.data.repo;
 
 import cookcollab.com.cookcollab.data.entity.Invite;
@@ -8,6 +14,6 @@ import java.util.List;
 
 @Repository
 public interface InviteRepository extends CrudRepository<Invite, Long> {
-    List<Invite> findByEventID(long eventID);
-    Invite findByInviteID(long inviteID);
+	List<Invite> findByEventID(long eventID);
+	Invite findByInviteID(long inviteID);
 }

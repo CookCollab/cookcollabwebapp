@@ -1,67 +1,75 @@
-package cookcollab.com.cookcollab.data.entity;
+/*
+* This file is used for the ratings in our database
+* Author: Michael Correia
+* Date: 8/31/2017
+*/
 
+package cookcollab.com.cookcollab.data.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-
 
 @Entity
 @Table(name="rating")
 public class Rating {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="rating_id")
-    private long ratingID;
-    @Column(name="reviewer_id")
-    private long reviewerID;
-    @Column(name="user_id")
-    private long userID;
-    @Column(name="rating")
-    private int rating;
-    @Column(name="date_updated")
-    private Date dateUpdated;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name="rating_id")
+	private long ratingID;
 
-    public long getRatingID() {
-        return this.ratingID;
-    }
+	@Column(name="reviewer_id")
+	private long reviewerID;
 
-    public void setRatingID(long ratingID) {
-        this.ratingID = ratingID;
-    }
+	@Column(name="user_id")
+	private long userID;
 
-    public long getReviewerID() {
-        return this.reviewerID;
-    }
+	@Column(name="rating")
+	private int rating;
 
-    public void setReviewerID(long reviewerID) {
-        this.reviewerID = reviewerID;
-    }
+	@Column(name="date_updated")
+	private Date dateUpdated;
 
-    public long getUserID() {
-        return this.userID;
-    }
+	public long getRatingID() {
+		return this.ratingID;
+	}
 
-    public void setUserID(long userID) {
-        this.userID = userID;
-    }
+	public void setRatingID(long ratingID) {
+		this.ratingID = ratingID;
+	}
 
-    public int getRating() {
-        return this.rating;
-    }
+	public long getReviewerID() {
+		return this.reviewerID;
+	}
 
-    public void setRating(int rating) {
-        if(rating >= 0 && rating <= 5) {
-            this.rating = rating;
-        }
-    }
+	public void setReviewerID(long reviewerID) {
+		this.reviewerID = reviewerID;
+	}
 
-    public Date getDateUpdated() {
-        return this.dateUpdated;
-    }
+	public long getUserID() {
+		return this.userID;
+	}
 
-    public void setDateUpdated(Date dateUpdated) {
-        this.dateUpdated = dateUpdated;
-    }
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+
+	public int getRating() {
+		return this.rating;
+	}
+
+	public void setRating(int rating) {
+		if(rating >= 0 && rating <= 5) {
+			this.rating = rating;
+		}
+	}
+
+	public Date getDateUpdated() {
+		return this.dateUpdated;
+	}
+
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
+	}
 
 }

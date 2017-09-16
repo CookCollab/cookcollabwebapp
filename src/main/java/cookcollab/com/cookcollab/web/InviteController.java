@@ -1,3 +1,9 @@
+/*
+* This class defines the routes used to perform CRUD operations on Invites
+* Author: Michael Correia
+* Date: 8/31/2017
+*/
+
 package cookcollab.com.cookcollab.web;
 
 import cookcollab.com.cookcollab.data.entity.Invite;
@@ -13,20 +19,20 @@ import java.util.List;
 @RestController
 public class InviteController {
 
-    private InviteRepository inviteRepo;
+	private InviteRepository inviteRepo;
 
-    @Autowired
-    public InviteController(InviteRepository inviteRepo) {
-        this.inviteRepo = inviteRepo;
-    }
+	@Autowired
+	public InviteController(InviteRepository inviteRepo) {
+		this.inviteRepo = inviteRepo;
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/invite/{id}")
-    public Invite getInvite(@PathVariable(value="id") long id){
-        return inviteRepo.findByInviteID(id);
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/invite/{id}")
+	public Invite getInvite(@PathVariable(value="id") long id){
+		return inviteRepo.findByInviteID(id);
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/invite")
-    public List<Invite> getAllInvite(){
-        return (List<Invite>) inviteRepo.findAll();
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/invite")
+	public List<Invite> getAllInvite(){
+		return (List<Invite>) inviteRepo.findAll();
+	}
 }

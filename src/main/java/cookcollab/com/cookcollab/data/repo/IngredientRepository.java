@@ -1,3 +1,9 @@
+/*
+* This interface defines the methods used to perform CRUD operations on Ingredients
+* Author: Christopher Pope
+* Date: 8/31/2017
+*/
+
 package cookcollab.com.cookcollab.data.repo;
 
 import cookcollab.com.cookcollab.data.entity.Ingredient;
@@ -8,8 +14,8 @@ import java.util.List;
 
 @Repository
 public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
-    List<Ingredient> findByName(String name);
+	List<Ingredient> findByName(String name);
 	Ingredient findByIngredientID(long ingredientID);
-    Ingredient findByEventID(long eventID);
-    Ingredient findByUserID(long userID);
+	Ingredient findByEventID(long eventID);
+	Ingredient findByUserID(long userID);
 }

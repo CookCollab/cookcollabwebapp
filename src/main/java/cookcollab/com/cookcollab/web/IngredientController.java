@@ -1,3 +1,9 @@
+/*
+* This class defines the routes used to perform CRUD operations on Ingredients
+* Author: Christopher Pope
+* Date: 8/31/2017
+*/
+
 package cookcollab.com.cookcollab.web;
 
 import cookcollab.com.cookcollab.data.entity.Ingredient;
@@ -14,20 +20,20 @@ import java.util.List;
 @RestController
 public class IngredientController {
 
-    private IngredientRepository ingredientRepo;
+	private IngredientRepository ingredientRepo;
 
-    @Autowired
-    public IngredientController(IngredientRepository ingredientRepo) {
-        this.ingredientRepo = ingredientRepo;
-    }
+	@Autowired
+	public IngredientController(IngredientRepository ingredientRepo) {
+		this.ingredientRepo = ingredientRepo;
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/ingredient/{id}")
-    public Ingredient getIngredient(@PathVariable(value="id") long id){
-        return ingredientRepo.findByIngredientID(id);
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/ingredient/{id}")
+	public Ingredient getIngredient(@PathVariable(value="id") long id){
+		return ingredientRepo.findByIngredientID(id);
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/ingredient")
-    public List<Ingredient> getAllIngredients(){
-        return (List<Ingredient>) ingredientRepo.findAll();
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/ingredient")
+	public List<Ingredient> getAllIngredients(){
+		return (List<Ingredient>) ingredientRepo.findAll();
+	}
 }

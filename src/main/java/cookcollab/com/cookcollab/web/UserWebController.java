@@ -1,3 +1,9 @@
+/*
+* This class defines the routes used to perform CRUD operations on Users
+* Author: Vatsal Vora
+* Date: 8/31/2017
+*/
+
 package cookcollab.com.cookcollab.web;
 
 import cookcollab.com.cookcollab.data.entity.User;
@@ -11,19 +17,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class UserWebController
-{
-        private UserRepository userRepo;
+public class UserWebController{
+	private UserRepository userRepo;
 
-        @Autowired
-        public UserWebController(UserRepository userRepo) {
-            this.userRepo = userRepo;
-        }
+	@Autowired
+	public UserWebController(UserRepository userRepo) {
+		this.userRepo = userRepo;
+	}
 
-        @RequestMapping(method= RequestMethod.GET,value="/users")
-        public String getReservations(Model model){
-            List<User> userList = (List<User>) userRepo.findAll();
-            model.addAttribute("users", userList);
-            return "users";
-        }
+	@RequestMapping(method= RequestMethod.GET,value="/users")
+	public String getReservations(Model model){
+		List<User> userList = (List<User>) userRepo.findAll();
+		model.addAttribute("users", userList);
+		return "users";
+	}
 }

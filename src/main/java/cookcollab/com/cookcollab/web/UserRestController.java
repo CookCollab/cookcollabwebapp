@@ -1,3 +1,9 @@
+/*
+* This class defines the API routes for an application to access the Users
+* Author: Vatsal Vora
+* Date: 8/31/2017
+*/
+
 package cookcollab.com.cookcollab.web;
 
 import cookcollab.com.cookcollab.data.entity.User;
@@ -13,20 +19,20 @@ import java.util.List;
 @RestController
 public class UserRestController {
 
-    private UserRepository userRepo;
+	private UserRepository userRepo;
 
-    @Autowired
-    public UserRestController(UserRepository userRepo) {
-        this.userRepo = userRepo;
-    }
+	@Autowired
+	public UserRestController(UserRepository userRepo) {
+		this.userRepo = userRepo;
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/api/user/{id}")
-    public User getUser(@PathVariable(value="id") long id){
-        return userRepo.findByUserID(id);
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/api/user/{id}")
+	public User getUser(@PathVariable(value="id") long id){
+		return userRepo.findByUserID(id);
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/api/user")
-    public List<User> getAllUsers(){
-        return (List<User>) userRepo.findAll();
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/api/user")
+	public List<User> getAllUsers(){
+		return (List<User>) userRepo.findAll();
+	}
 }
