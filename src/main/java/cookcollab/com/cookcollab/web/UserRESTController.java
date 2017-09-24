@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class UserRestController {
+public class UserRESTController {
 
 	private UserRepository userRepo;
 
 	@Autowired
-	public UserRestController(UserRepository userRepo) {
+	public UserRESTController(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Cook Collab</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <!-- Own CSS changes -->
+    <link rel="stylesheet" href="css/site.css"/>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1 class="text-center"><b>Ratings</b></h1>
+</div>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td><b>rating_id</b></td>
+            <td><b>reviewer_id</b></td>
+            <td><b>user_id</b></td>
+            <td><b>rating</b></td>
+            <td><b>date_updated</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rating: ${ratings}">
+            <td th:text="${rating.ratingID}">rating_id</td>
+            <td th:text="${rating.reviewerID}">reviewer_id</td>
+            <td th:text="${rating.userID}">user_id</td>
+            <td th:text="${rating.rating}">rating</td>
+            <td th:text="${rating.dateUpdated}">date_updated</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
