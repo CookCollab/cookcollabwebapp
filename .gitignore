@@ -1,5 +1,6 @@
 .gradle
 /build/
+/out/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -26,3 +27,6 @@ nbdist/
 
 ### Custom ###
 .class
+src/main/resources/application.properties
+*.css
+.sass-cache/
