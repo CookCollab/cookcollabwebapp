@@ -40,7 +40,7 @@ public class Event {
 		this.eventID = eventID;
 	}
 
-	public Date getDate() {
+	public Date getEventDate() {
 		return this.eventDate;
 	}
 

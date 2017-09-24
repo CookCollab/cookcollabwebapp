@@ -18,21 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class EventController {
+public class EventRESTController {
 
 	private EventRepository eventRepo;
 
 	@Autowired
-	public EventController(EventRepository eventRepo) {
+	public EventRESTController(EventRepository eventRepo) {
 		this.eventRepo = eventRepo;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/event/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/event/{id}")
 	public Event getEvent(@PathVariable(value="id") long id){
 		return eventRepo.findByEventID(id);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/event")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/event")
 	public List<Event> getAllEvents(){
 		return (List<Event>) eventRepo.findAll();
 	}

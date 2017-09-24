@@ -18,21 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class IngredientController {
+public class IngredientRESTController {
 
 	private IngredientRepository ingredientRepo;
 
 	@Autowired
-	public IngredientController(IngredientRepository ingredientRepo) {
+	public IngredientRESTController(IngredientRepository ingredientRepo) {
 		this.ingredientRepo = ingredientRepo;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/ingredient/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/ingredient/{id}")
 	public Ingredient getIngredient(@PathVariable(value="id") long id){
 		return ingredientRepo.findByIngredientID(id);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/ingredient")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/ingredient")
 	public List<Ingredient> getAllIngredients(){
 		return (List<Ingredient>) ingredientRepo.findAll();
 	}

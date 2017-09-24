@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class InviteController {
+public class InviteRESTController {
 
 	private InviteRepository inviteRepo;
 
 	@Autowired
-	public InviteController(InviteRepository inviteRepo) {
+	public InviteRESTController(InviteRepository inviteRepo) {
 		this.inviteRepo = inviteRepo;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/invite/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/invite/{id}")
 	public Invite getInvite(@PathVariable(value="id") long id){
 		return inviteRepo.findByInviteID(id);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/invite")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/invite")
 	public List<Invite> getAllInvite(){
 		return (List<Invite>) inviteRepo.findAll();
 	}

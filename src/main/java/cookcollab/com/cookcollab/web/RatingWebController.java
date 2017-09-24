@@ -1,7 +1,7 @@
 /*
 * This class defines the routes used to perform CRUD operations on Users
-* Author: Vatsal Vora
-* Date: 8/31/2017
+* Author: Michael Correia
+* Date: 9/24/2017
 */
 
 package cookcollab.com.cookcollab.web;
