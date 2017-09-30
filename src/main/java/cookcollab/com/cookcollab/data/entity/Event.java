@@ -47,6 +47,7 @@ public class Event {
 	public void setDate(Date eventDate) {
 		this.eventDate = eventDate;
 	}
+
 	public String getAddress() {
 		return this.address;
 	}

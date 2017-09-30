@@ -54,7 +54,7 @@ public class Rating {
 		this.userID = userID;
 	}
 
-	public int getRating() {
+	public long getRating() {
 		return this.rating;
 	}
 

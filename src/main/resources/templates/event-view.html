@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Cook Collab</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <!-- Own CSS changes -->
+    <link rel="stylesheet" href="css/site.css"/>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1 class="text-center" th:text="${event.recipe}  + ' on ' + ${event.eventDate} + ' at ' + ${event.address}"></h1>
+</div>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td><b>event_id</b></td>
+            <td><b>event_date</b></td>
+            <td><b>address</b></td>
+            <td><b>recipe</b></td>
+            <td><b>user_id</b></td>
+        </tr>
+        </thead>
+        <tbody>
+            <td th:text="${event.eventID}">event_id</td>
+            <td th:text="${event.eventDate}">event_date</td>
+            <td th:text="${event.address}">address</td>
+            <td th:text="${event.recipe}">recipe</td>
+            <td th:text="${event.userID}">user_id</td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

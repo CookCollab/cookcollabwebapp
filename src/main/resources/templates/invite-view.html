@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Cook Collab</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <!-- Own CSS changes -->
+    <link rel="stylesheet" href="css/site.css"/>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1 class="text-center"><b>Invite</b></h1>
+</div>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <td><b>invite_id</b></td>
+            <td><b>event_id</b></td>
+            <td><b>user_id</b></td>
+            <td><b>viewed</b></td>
+            <td><b>from_event_owner</b></td>
+            <td><b>accepted</b></td>
+        </thead>
+        <tbody>
+            <td th:text="${invite.inviteID}">invite_id</td>
+            <td th:text="${invite.eventID}">event_id</td>
+            <td th:text="${invite.userID}">user_id</td>
+            <td th:text="${invite.viewed}">viewed</td>
+            <td th:text="${invite.fromEventOwner}">from_event_owner</td>
+            <td th:text="${invite.accepted}">accepted</td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

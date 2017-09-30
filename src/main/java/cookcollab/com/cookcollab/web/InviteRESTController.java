@@ -32,7 +32,7 @@ public class InviteRESTController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/api/invite")
-	public List<Invite> getAllInvite(){
+	public List<Invite> getAllInvites(){
 		return (List<Invite>) inviteRepo.findAll();
 	}
 }

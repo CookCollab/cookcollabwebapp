@@ -11,6 +11,7 @@ import cookcollab.com.cookcollab.data.repo.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,17 +19,24 @@ import java.util.List;
 
 @Controller
 public class IngredientWebController {
-	private IngredientRepository ingredientRepo;
+
+	private IngredientRESTController ingredientRESTController;
 
 	@Autowired
-	public IngredientWebController(IngredientRepository ingredientRepo) {
-		this.ingredientRepo = ingredientRepo;
+	public IngredientWebController(IngredientRESTController ingredientRESTController) {
+		this.ingredientRESTController = ingredientRESTController;
 	}
 
 	@RequestMapping(method= RequestMethod.GET,value="/ingredients")
-	public String getReservations(Model model){
-		List<Ingredient> ingredientList = (List<Ingredient>) ingredientRepo.findAll();
+	public String getIngredients(Model model){
+		List<Ingredient> ingredientList = this.ingredientRESTController.getAllIngredients();
 		model.addAttribute("ingredients", ingredientList);
 		return "ingredients";
+	}
+
+	@RequestMapping(method= RequestMethod.GET,value="/ingredients/{id}")
+	public String getIngredient(Model model, @PathVariable(value="id") long id){
+		model.addAttribute("ingredient", this.ingredientRESTController.getIngredient(id));
+		return "ingredient-view";
 	}
 }

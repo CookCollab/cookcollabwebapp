@@ -13,6 +13,7 @@ import cookcollab.com.cookcollab.data.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,17 +21,24 @@ import java.util.List;
 
 @Controller
 public class RatingWebController {
-	private RatingRepository ratingRepo;
+
+	private RatingRESTController ratingRESTController;
 
 	@Autowired
-	public RatingWebController(RatingRepository ratingRepo) {
-		this.ratingRepo = ratingRepo;
+	public RatingWebController(RatingRESTController ratingRESTController) {
+		this.ratingRESTController = ratingRESTController;
 	}
 
 	@RequestMapping(method= RequestMethod.GET,value="/ratings")
-	public String getReservations(Model model){
-		List<Rating> ratingList = (List<Rating>) ratingRepo.findAll();
+	public String getRatings(Model model){
+		List<Rating> ratingList = this.ratingRESTController.getAllRatings();
 		model.addAttribute("ratings", ratingList);
 		return "ratings";
+	}
+
+	@RequestMapping(method= RequestMethod.GET,value="/ratings/{id}")
+	public String getRating(Model model, @PathVariable(value="id") long id){
+		model.addAttribute("rating", this.ratingRESTController.getRating(id));
+		return "rating-view";
 	}
 }
