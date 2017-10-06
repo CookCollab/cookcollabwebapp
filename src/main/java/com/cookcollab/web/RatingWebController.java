@@ -4,12 +4,9 @@
 * Date: 9/24/2017
 */
 
-package cookcollab.com.cookcollab.web;
+package com.cookcollab.web;
 
-import cookcollab.com.cookcollab.data.entity.Rating;
-import cookcollab.com.cookcollab.data.repo.RatingRepository;
-import cookcollab.com.cookcollab.data.entity.User;
-import cookcollab.com.cookcollab.data.repo.UserRepository;
+import com.cookcollab.data.entity.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

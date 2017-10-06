@@ -1,4 +1,4 @@
-package cookcollab.com.cookcollab;
+package com.cookcollab;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

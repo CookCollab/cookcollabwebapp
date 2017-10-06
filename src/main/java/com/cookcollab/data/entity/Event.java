@@ -4,7 +4,7 @@
 * Date: 8/31/2017
 */
 
-package cookcollab.com.cookcollab.data.entity;
+package com.cookcollab.data.entity;
 
 
 import javax.persistence.*;

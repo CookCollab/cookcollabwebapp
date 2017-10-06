@@ -4,10 +4,10 @@
 * Date: 9/24/2017
 */
 
-package cookcollab.com.cookcollab.web;
+package com.cookcollab.web;
 
-import cookcollab.com.cookcollab.data.entity.Event;
-import cookcollab.com.cookcollab.data.repo.EventRepository;
+import com.cookcollab.data.entity.Event;
+import com.cookcollab.data.repo.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

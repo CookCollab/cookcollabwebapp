@@ -4,9 +4,9 @@
 * Date: 8/31/2017
 */
 
-package cookcollab.com.cookcollab.data.repo;
+package com.cookcollab.data.repo;
 
-import cookcollab.com.cookcollab.data.entity.Rating;
+import com.cookcollab.data.entity.Rating;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
