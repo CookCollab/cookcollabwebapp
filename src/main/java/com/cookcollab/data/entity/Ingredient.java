@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Ingredient {
  
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ingredient_id")
 	private long ingredientID;
 

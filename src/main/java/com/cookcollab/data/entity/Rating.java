@@ -14,7 +14,7 @@ import java.sql.Date;
 public class Rating {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="rating_id")
 	private long ratingID;
 

@@ -16,7 +16,7 @@ import java.sql.Date;
 public class Event {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="event_id")
 	private long eventID;
 
@@ -72,4 +72,14 @@ public class Event {
 		this.userID = userID;
 	}
 
+	@Override
+	public String toString() {
+		return "Event{" +
+				"eventID='" + eventID + '\'' +
+				", eventDate=" + eventDate +
+				", address='" + address + '\'' +
+				", recipe='" + recipe + '\'' +
+				", userID=" + userID +
+				'}';
+	}
 }

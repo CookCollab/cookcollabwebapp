@@ -47,6 +47,7 @@ dependencies {
 	}
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+	testCompile('org.hibernate.dialect.PostgreSQLDialect')
 }
 
 compass {

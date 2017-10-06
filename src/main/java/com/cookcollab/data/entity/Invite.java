@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Invite {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="invite_id")
 	private long inviteID;
 

@@ -9,11 +9,11 @@ package com.cookcollab.data.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name="`user`")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
 	private long userID;
 
@@ -78,5 +78,17 @@ public class User {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"userID='" + userID + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", phone='" + phone + '\'' +
+				", bio='" + bio + '\'' +
+				'}';
 	}
 }
