@@ -1,17 +1,23 @@
-package com.cookcollab.data.entity;
+package com.cookcollab.data;
 
+import com.cookcollab.data.entity.Event;
+import com.cookcollab.data.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
+
+import java.nio.file.Paths;
+
 import static org.junit.Assert.*;
 
 
 public class DatabaseTest {
 
+
 	@Test
 	public void userDatabaseTest(){
-
+		
 		try(SessionFactory sessionFactory = new Configuration().configure()
 			                                               .addAnnotatedClass(User.class)
 			                                               .addAnnotatedClass(Event.class)
@@ -53,8 +59,6 @@ public class DatabaseTest {
 			delete(databaseUser, sessionFactory.getCurrentSession());
 
 			Session session = sessionFactory.getCurrentSession();
-
-			session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			assertTrue("User not deleted from database",
 					   !session.contains(databaseUser));
@@ -62,7 +66,6 @@ public class DatabaseTest {
 			session.getTransaction().commit();
 
 		}
-
 	}
 
 	public static void create(Object obj, Session session){

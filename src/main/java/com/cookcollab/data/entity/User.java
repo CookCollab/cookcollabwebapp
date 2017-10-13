@@ -7,6 +7,7 @@
 package com.cookcollab.data.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="`user`")
@@ -31,6 +32,9 @@ public class User {
 
 	@Column(name="bio")
 	private String bio;
+
+	@OneToMany(mappedBy = "user")
+	private List<Event> events;
 
 	public long getUserID() {
 		return userID;
@@ -78,6 +82,14 @@ public class User {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 	@Override

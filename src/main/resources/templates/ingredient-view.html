@@ -24,8 +24,8 @@
         <thead>
         <tr>
             <td><b>ingredient_id</b></td>
-            <td><b>event_id</b></td>
-            <td><b>user_id</b></td>
+            <td><b>event</b></td>
+            <td><b>user</b></td>
             <td><b>quantity</b></td>
             <td><b>unit</b></td>
             <td><b>name</b></td>
@@ -33,8 +33,8 @@
         </thead>
         <tbody>
             <td th:text="${ingredient.ingredientID}">ingredient_id</td>
-            <td th:text="${ingredient.eventID}">event_id</td>
-            <td th:text="${ingredient.userID}">user_id</td>
+            <td th:text="${ingredient.event}">event</td>
+            <td th:text="${ingredient.user}">user</td>
             <td th:text="${ingredient.quantity}">quantity</td>
             <td th:text="${ingredient.unit}">unit</td>
             <td th:text="${ingredient.name}">name</td>

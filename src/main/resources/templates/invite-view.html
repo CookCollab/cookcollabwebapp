@@ -23,16 +23,16 @@
     <table class="table table-hover">
         <thead>
             <td><b>invite_id</b></td>
-            <td><b>event_id</b></td>
-            <td><b>user_id</b></td>
+            <td><b>event</b></td>
+            <td><b>user</b></td>
             <td><b>viewed</b></td>
             <td><b>from_event_owner</b></td>
             <td><b>accepted</b></td>
         </thead>
         <tbody>
             <td th:text="${invite.inviteID}">invite_id</td>
-            <td th:text="${invite.eventID}">event_id</td>
-            <td th:text="${invite.userID}">user_id</td>
+            <td th:text="${invite.event}">event</td>
+            <td th:text="${invite.user}">user</td>
             <td th:text="${invite.viewed}">viewed</td>
             <td th:text="${invite.fromEventOwner}">from_event_owner</td>
             <td th:text="${invite.accepted}">accepted</td>

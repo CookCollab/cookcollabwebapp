@@ -7,6 +7,7 @@
 package com.cookcollab.data.repo;
 
 import com.cookcollab.data.entity.Rating;
+import com.cookcollab.data.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +16,8 @@ import java.util.List;
 
 @Repository
 public interface RatingRepository extends CrudRepository<Rating, Long> {
-    List<Rating> findByReviewerID(long reviewerID);
+    List<Rating> findByReviewer(User reviewer);
 	Rating findByDateUpdated(Date dateUpdated);
 	Rating findByRatingID(long userID);
-	Rating findByUserID(long userID);
+	Rating findByUser(User user);
 }

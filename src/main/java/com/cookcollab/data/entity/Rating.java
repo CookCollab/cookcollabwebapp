@@ -18,11 +18,13 @@ public class Rating {
 	@Column(name="rating_id")
 	private long ratingID;
 
-	@Column(name="reviewer_id")
-	private long reviewerID;
+	@ManyToOne
+	@JoinColumn(name="reviewer_id")
+	private User reviewer;
 
-	@Column(name="user_id")
-	private long userID;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	@Column(name="rating")
 	private int rating;
@@ -38,20 +40,20 @@ public class Rating {
 		this.ratingID = ratingID;
 	}
 
-	public long getReviewerID() {
-		return this.reviewerID;
+	public User getReviewer() {
+		return this.reviewer;
 	}
 
-	public void setReviewerID(long reviewerID) {
-		this.reviewerID = reviewerID;
+	public void setReviewer(User reviewer) {
+		this.reviewer = reviewer;
 	}
 
-	public long getUserID() {
-		return this.userID;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUserID(long userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public long getRating() {

@@ -27,7 +27,7 @@
             <td><b>event_date</b></td>
             <td><b>address</b></td>
             <td><b>recipe</b></td>
-            <td><b>user_id</b></td>
+            <td><b>user_first_name</b></td>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
             <td th:text="${event.eventDate}">event_date</td>
             <td th:text="${event.address}">address</td>
             <td th:text="${event.recipe}">recipe</td>
-            <td th:text="${event.userID}">user_id</td>
+            <td th:text="${event.user.firstName}">user_first_name</td>
         </tr>
         </tbody>
     </table>

@@ -17,11 +17,13 @@ public class Invite {
 	@Column(name="invite_id")
 	private long inviteID;
 
-	@Column(name="event_id")
-	private long eventID;
+	@ManyToOne
+	@JoinColumn(name="event_id")
+	private Event event;
 
-	@Column(name="user_id")
-	private long userID;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	@Column(name="viewed")
 	private boolean viewed;
@@ -40,20 +42,20 @@ public class Invite {
 		this.inviteID = inviteID;
 	}
 
-	public long getEventID() {
-		return eventID;
+	public Event getEvent() {
+		return event;
 	}
 
-	public void setEventID(long eventID) {
-		this.eventID = eventID;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
-	public long getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(long userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public boolean isViewed() {

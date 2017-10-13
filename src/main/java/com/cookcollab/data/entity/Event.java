@@ -7,8 +7,13 @@
 package com.cookcollab.data.entity;
 
 
+import org.hibernate.annotations.JoinColumnOrFormula;
+import org.hibernate.annotations.WhereJoinTable;
+
 import javax.persistence.*;
+import javax.validation.Constraint;
 import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -29,8 +34,9 @@ public class Event {
 	@Column(name="recipe")
 	private String recipe;
 
-	@Column(name="user_id")
-	private long userID;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public long getEventID() {
 		return this.eventID;
@@ -64,12 +70,12 @@ public class Event {
 		this.recipe = recipe;
 	}
 
-	public long getUserID() {
-		return this.userID;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUserID(long userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
@@ -79,7 +85,7 @@ public class Event {
 				", eventDate=" + eventDate +
 				", address='" + address + '\'' +
 				", recipe='" + recipe + '\'' +
-				", userID=" + userID +
+				", user=" + user +
 				'}';
 	}
 }

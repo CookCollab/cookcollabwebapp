@@ -17,11 +17,13 @@ public class Ingredient {
 	@Column(name="ingredient_id")
 	private long ingredientID;
 
-	@Column(name="event_id")
-	private long eventID;
+	@ManyToOne
+	@JoinColumn(name="event_id")
+	private Event event;
 
-	@Column(name="user_id")
-	private long userID;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	@Column(name="quantity")
 	private long quantity;
@@ -38,20 +40,20 @@ public class Ingredient {
 		this.ingredientID = ingredientID;
 	}
 
-	public long getEventID() {
-		return this.eventID;
+	public Event getEvent() {
+		return this.event;
 	}
 
-	public void setEventID(long eventID) {
-		this.eventID = eventID;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
-	public long getUserID() {
-		return this.userID;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUserID(long userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public long getQuantity() {

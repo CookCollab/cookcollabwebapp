@@ -7,6 +7,7 @@
 package com.cookcollab.data.repo;
 
 import com.cookcollab.data.entity.Event;
+import com.cookcollab.data.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -16,5 +17,5 @@ import java.sql.Date;
 public interface EventRepository extends CrudRepository<Event, Long> {
 	List<Event> findByEventDate(Date EventDate);
 	Event findByEventID(long eventID);
-	Event findByUserID(long userID);
+	Event findByUser(User user);
 }

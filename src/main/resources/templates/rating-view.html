@@ -23,15 +23,15 @@
     <table class="table table-hover">
         <thead>
             <td><b>rating_id</b></td>
-            <td><b>reviewer_id</b></td>
-            <td><b>user_id</b></td>
+            <td><b>reviewer</b></td>
+            <td><b>user</b></td>
             <td><b>rating</b></td>
             <td><b>date_updated</b></td>
         </thead>
         <tbody>
             <td th:text="${rating.ratingID}">rating_id</td>
-            <td th:text="${rating.reviewerID}">reviewer_id</td>
-            <td th:text="${rating.userID}">user_id</td>
+            <td th:text="${rating.reviewer}">reviewer</td>
+            <td th:text="${rating.user}">user</td>
             <td th:text="${rating.rating}">rating</td>
             <td th:text="${rating.dateUpdated}">date_updated</td>
         </tbody>
