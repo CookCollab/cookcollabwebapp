@@ -6,7 +6,10 @@
 
 package com.cookcollab.data.entity;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -33,8 +36,21 @@ public class User {
 	@Column(name="bio")
 	private String bio;
 
-	@OneToMany(mappedBy = "user")
-	private List<Event> events;
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<Event> hostEvents;
+
+	@ManyToMany(mappedBy = "guests", fetch = FetchType.LAZY)
+	private List<Event> guestEvents;
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<Ingredient> ingredients;
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<Rating> ratings;
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@Where(clause = "accepted = false OR viewed = false")
+	private List<Invite> invites;
 
 	public long getUserID() {
 		return userID;
@@ -84,23 +100,69 @@ public class User {
 		this.bio = bio;
 	}
 
-	public List<Event> getEvents() {
-		return events;
+	public List<Event> getHostEvents() {
+		return hostEvents;
 	}
 
-	public void setEvents(List<Event> events) {
-		this.events = events;
+	public void setHostEvents(List<Event> hostEvents) {
+		this.hostEvents = hostEvents;
+	}
+
+	public List<Event> getGuestEvents() {
+		return guestEvents;
+	}
+
+	public void setGuestEvents(List<Event> guestEvents) {
+		this.guestEvents = guestEvents;
+	}
+
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public List<Invite> getInvites() {
+		return invites;
+	}
+
+	public void setInvites(List<Invite> invites) {
+		this.invites = invites;
+	}
+
+	// UNTESTED
+	public void review(User user, int score){
+		Rating rating = new Rating();
+		rating.setRating(score);
+		rating.setUser(user);
+		rating.setReviewer(this);
+		rating.setDateUpdated(LocalDate.now());
+	}
+
+	public float getRating(){
+		int sum = 0;
+		float toReturn = 0F;
+		for(Rating rating : this.ratings){
+			sum += rating.getRating();
+		}
+		if(!this.ratings.isEmpty()){
+			toReturn = (float) sum/this.ratings.size();
+		}
+		return toReturn;
 	}
 
 	@Override
 	public String toString() {
-		return "User{" +
-				"userID='" + userID + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				", phone='" + phone + '\'' +
-				", bio='" + bio + '\'' +
-				'}';
+		return this.firstName + " " + this.lastName;
 	}
 }

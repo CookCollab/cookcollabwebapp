@@ -6,13 +6,11 @@
 
 package com.cookcollab.data.entity;
 
-
-import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.WhereJoinTable;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -26,7 +24,7 @@ public class Event {
 	private long eventID;
 
 	@Column(name="event_date")
-	private Date eventDate;
+	private LocalDate eventDate;
 
 	@Column(name="address")
 	private String address;
@@ -38,6 +36,18 @@ public class Event {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+		name="invite",
+		joinColumns = {@JoinColumn(name="event_id", referencedColumnName = "event_id")},
+		inverseJoinColumns = {@JoinColumn(name="user_id", referencedColumnName = "user_id")}
+	)
+	@WhereJoinTable(clause = "accepted = true")
+	private List<User> guests;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "event")
+	private List<Ingredient> ingredients;
+
 	public long getEventID() {
 		return this.eventID;
 	}
@@ -46,11 +56,11 @@ public class Event {
 		this.eventID = eventID;
 	}
 
-	public Date getEventDate() {
+	public LocalDate getEventDate() {
 		return this.eventDate;
 	}
 
-	public void setDate(Date eventDate) {
+	public void setEventDate(LocalDate eventDate) {
 		this.eventDate = eventDate;
 	}
 
@@ -76,6 +86,22 @@ public class Event {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<User> getGuests() {
+		return this.guests;
+	}
+
+	public void setGuests(List<User> guests) {
+		this.guests = guests;
+	}
+
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	@Override

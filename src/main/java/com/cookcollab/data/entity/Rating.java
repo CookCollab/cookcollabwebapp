@@ -8,6 +8,7 @@ package com.cookcollab.data.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="rating")
@@ -30,7 +31,7 @@ public class Rating {
 	private int rating;
 
 	@Column(name="date_updated")
-	private Date dateUpdated;
+	private LocalDate dateUpdated;
 
 	public long getRatingID() {
 		return this.ratingID;
@@ -66,11 +67,11 @@ public class Rating {
 		}
 	}
 
-	public Date getDateUpdated() {
+	public LocalDate getDateUpdated() {
 		return this.dateUpdated;
 	}
 
-	public void setDateUpdated(Date dateUpdated) {
+	public void setDateUpdated(LocalDate dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
 

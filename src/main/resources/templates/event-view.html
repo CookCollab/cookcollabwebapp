@@ -20,22 +20,56 @@
     <h1 class="text-center" th:text="${event.recipe}  + ' on ' + ${event.eventDate} + ' at ' + ${event.address}"></h1>
 </div>
 <div class="container">
+    <br>
+    <h2 class="text-center" th:text="${'Date: ' + event.eventDate}"/>
+    <br>
+    <h2 class="text-center" th:text="${'Address: ' + event.address}"/>
+    <br>
+    <h2 class="text-center" th:text="${'Recipe: ' + event.recipe}"/>
+    <br>
+    <h2 class="text-center" th:text="${'Owner: ' + event.user.firstName + ' ' + event.user.lastName}"/>
+</div>
+<div class="container">
+    <br><br>
+    <h2>Guests</h2>
     <table class="table table-hover">
         <thead>
         <tr>
-            <td><b>event_id</b></td>
-            <td><b>event_date</b></td>
-            <td><b>address</b></td>
-            <td><b>recipe</b></td>
-            <td><b>user_first_name</b></td>
+            <td><b>Name</b></td>
+            <td><b>Email</b></td>
+            <td><b>Phone</b></td>
+            <td><b>Bio</b></td>
         </tr>
         </thead>
         <tbody>
-            <td th:text="${event.eventID}">event_id</td>
-            <td th:text="${event.eventDate}">event_date</td>
-            <td th:text="${event.address}">address</td>
-            <td th:text="${event.recipe}">recipe</td>
-            <td th:text="${event.user.firstName}">user_first_name</td>
+        <tr th:each="user: ${event.guests}">
+            <td th:text="${user}">Name</td>
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.phone}">Phone</td>
+            <td th:text="${user.bio}">Bio</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <br><br>
+    <h2>Ingredients</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td><b>user</b></td>
+            <td><b>quantity</b></td>
+            <td><b>name</b></td>
+            <td><b>unit</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ingredient: ${event.ingredients}">
+            <td th:text="${ingredient.user}">user</td>
+            <td th:text="${ingredient.quantity}">quantity</td>
+            <td th:text="${ingredient.name}">name</td>
+            <td th:text="${ingredient.unit}">unit</td>
+        </tr>
         </tbody>
     </table>
 </div>
