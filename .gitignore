@@ -30,3 +30,4 @@ nbdist/
 src/main/resources/application.properties
 *.css
 .sass-cache/
+src/test/resources/hibernate.cfg.xml

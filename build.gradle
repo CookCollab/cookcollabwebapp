@@ -38,11 +38,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.springframework.boot:spring-boot-devtools")
-	compile("org.webjars.bower:jquery")
-	compile("org.webjars.npm:popper.js")
-	compile("org.webjars:bootstrap:4.0.0-beta")
     compile("com.github.robfletcher:compass-gradle-plugin:2.0.5")
-	runtime('org.postgresql:postgresql:9.4-1201-jdbc41') {
+	runtime('org.postgresql:postgresql') {
 		exclude group: "ch.qos.logback"
 	}
 	testCompile('org.springframework.boot:spring-boot-starter-test')

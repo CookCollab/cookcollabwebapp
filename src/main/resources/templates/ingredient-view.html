@@ -17,29 +17,27 @@
 </head>
 <body>
 <div class="page-header">
-    <h1 class="text-center"><b>Users</b></h1>
+    <h1 class="text-center" th:text="${ingredient.quantity}  + ' ' + ${ingredient.unit} + ' of ' + ${ingredient.name}"></h1>
 </div>
 <div class="container">
     <table class="table table-hover">
         <thead>
         <tr>
-            <td><b>First Name</b></td>
-            <td><b>Last Name</b></td>
-            <td><b>Email</b></td>
-            <td><b>Phone</b></td>
-            <td><b>Bio</b></td>
-            <td><b>Rating</b></td>
+            <td><b>ingredient_id</b></td>
+            <td><b>event</b></td>
+            <td><b>user</b></td>
+            <td><b>quantity</b></td>
+            <td><b>unit</b></td>
+            <td><b>name</b></td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user: ${users}">
-            <td th:text="${user.firstName}">First Name</td>
-            <td th:text="${user.lastName}">Last Name</td>
-            <td th:text="${user.email}">Email</td>
-            <td th:text="${user.phone}">Phone</td>
-            <td th:text="${user.bio}">Bio</td>
-            <td th:text="${user.rating}">rating</td>
-        </tr>
+            <td th:text="${ingredient.ingredientID}">ingredient_id</td>
+            <td th:text="${ingredient.event}">event</td>
+            <td th:text="${ingredient.user}">user</td>
+            <td th:text="${ingredient.quantity}">quantity</td>
+            <td th:text="${ingredient.unit}">unit</td>
+            <td th:text="${ingredient.name}">name</td>
         </tbody>
     </table>
 </div>
