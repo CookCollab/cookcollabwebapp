@@ -6,10 +6,19 @@
 
 package com.cookcollab.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import javax.persistence.*;
+import java.io.IOException;
+import java.util.List;
 
 @Entity
 @Table(name="ingredient")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Ingredient {
  
 	@Id
@@ -19,10 +28,12 @@ public class Ingredient {
 
 	@ManyToOne
 	@JoinColumn(name="event_id")
+	@JsonSerialize(using = EventSerializer.class)
 	private Event event;
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonSerialize(using = UserSerializer.class)
 	private User user;
 
 	@Column(name="quantity")
@@ -80,4 +91,50 @@ public class Ingredient {
 		this.name = name;
 	}
 
+}
+
+class IngredientSerializer extends StdSerializer<Ingredient> {
+	public IngredientSerializer(){
+		this(Ingredient.class);
+	}
+
+	public IngredientSerializer(Class<Ingredient> ingredient) {
+		super(ingredient);
+	}
+
+	@Override
+	public void serialize(Ingredient ingredient, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException {
+		generator.writeStartObject();
+		generator.writeNumberField("ingredientID", ingredient.getIngredientID());
+		generator.writeNumberField("quanitity", ingredient.getQuantity());
+		generator.writeStringField("name", ingredient.getName());
+		generator.writeStringField("unit", ingredient.getUnit());
+		generator.writeEndObject();
+	}
+
+}
+
+class IngredientListSerializer extends StdSerializer<List<Ingredient>>{
+
+	public IngredientListSerializer() {
+		this(null);
+	}
+
+	public IngredientListSerializer(Class<List<Ingredient>> ingredientList) {
+		super(ingredientList);
+	}
+
+	@Override
+	public void serialize(List<Ingredient> ingredients, JsonGenerator generator, SerializerProvider provider)throws IOException, JsonProcessingException {
+		generator.writeStartArray();
+		for (Ingredient ingredient : ingredients) {
+			generator.writeStartObject();
+			generator.writeNumberField("ingredientID", ingredient.getIngredientID());
+			generator.writeNumberField("quanitity", ingredient.getQuantity());
+			generator.writeStringField("name", ingredient.getName());
+			generator.writeStringField("unit", ingredient.getUnit());
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
+	}
 }

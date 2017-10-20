@@ -6,16 +6,22 @@
 
 package com.cookcollab.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import org.hibernate.annotations.WhereJoinTable;
-
 import javax.persistence.*;
-import java.sql.Date;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
 
 @Entity
 @Table(name="event")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Event {
 
 	@Id
@@ -32,7 +38,8 @@ public class Event {
 	@Column(name="recipe")
 	private String recipe;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@JsonSerialize(using = UserSerializer.class)
 	@JoinColumn(name = "user_id")
 	private User user;
 
@@ -43,9 +50,11 @@ public class Event {
 		inverseJoinColumns = {@JoinColumn(name="user_id", referencedColumnName = "user_id")}
 	)
 	@WhereJoinTable(clause = "accepted = true")
+	@JsonSerialize(using = UserListSerializer.class)
 	private List<User> guests;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "event")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "event", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
+	@JsonSerialize(using = IngredientListSerializer.class)
 	private List<Ingredient> ingredients;
 
 	public long getEventID() {
@@ -113,5 +122,48 @@ public class Event {
 				", recipe='" + recipe + '\'' +
 				", user=" + user +
 				'}';
+	}
+}
+
+class EventSerializer extends StdSerializer<Event> {
+	public EventSerializer(){
+		this(Event.class);
+	}
+
+	public EventSerializer(Class<Event> event) {
+		super(event);
+	}
+
+	@Override
+	public void serialize(Event event, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException {
+		generator.writeStartObject();
+		generator.writeNumberField("eventID", event.getEventID());
+		generator.writeStringField("recipe", event.getRecipe());
+		generator.writeStringField("eventDate", event.getEventDate().toString());
+		generator.writeEndObject();
+	}
+}
+
+class EventListSerializer extends StdSerializer<List<Event>>{
+
+	public EventListSerializer() {
+		this(null);
+	}
+
+	public EventListSerializer(Class<List<Event>> eventList) {
+		super(eventList);
+	}
+
+	@Override
+	public void serialize(List<Event> events, JsonGenerator generator, SerializerProvider provider)throws IOException, JsonProcessingException {
+		generator.writeStartArray();
+		for (Event event : events) {
+			generator.writeStartObject();
+			generator.writeNumberField("eventID", event.getEventID());
+			generator.writeStringField("recipe", event.getRecipe());
+			generator.writeStringField("eventDate", event.getEventDate().toString());
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
 	}
 }
