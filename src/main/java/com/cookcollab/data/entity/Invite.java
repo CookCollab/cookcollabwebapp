@@ -6,10 +6,19 @@
 
 package com.cookcollab.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import javax.persistence.*;
+import java.io.IOException;
+import java.util.List;
 
 @Entity
 @Table(name="invite")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Invite {
 
 	@Id
@@ -19,10 +28,12 @@ public class Invite {
 
 	@ManyToOne
 	@JoinColumn(name="event_id")
+	@JsonSerialize(using = EventSerializer.class)
 	private Event event;
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonSerialize(using = UserSerializer.class)
 	private User user;
 
 	@Column(name="viewed")
@@ -80,5 +91,53 @@ public class Invite {
 
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
+	}
+}
+
+class InviteSerializer extends StdSerializer<Invite> {
+	public InviteSerializer(){
+		this(Invite.class);
+	}
+
+	public InviteSerializer(Class<Invite> invite) {
+		super(invite);
+	}
+
+	@Override
+	public void serialize(Invite invite, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException {
+		generator.writeStartObject();
+		generator.writeNumberField("inviteID", invite.getInviteID());
+		generator.writeNumberField("userID", invite.getUser().getUserID());
+		generator.writeBooleanField("viewed", invite.isViewed());
+		generator.writeBooleanField("fromEventOwner", invite.isFromEventOwner());
+		generator.writeBooleanField("accepted", invite.isAccepted());
+		generator.writeEndObject();
+	}
+
+}
+
+class InviteListSerializer extends StdSerializer<List<Invite>>{
+
+	public InviteListSerializer() {
+		this(null);
+	}
+
+	public InviteListSerializer(Class<List<Invite>> inviteList) {
+		super(inviteList);
+	}
+
+	@Override
+	public void serialize(List<Invite> invites, JsonGenerator generator, SerializerProvider provider)throws IOException, JsonProcessingException {
+		generator.writeStartArray();
+		for (Invite invite : invites) {
+			generator.writeStartObject();
+			generator.writeNumberField("inviteID", invite.getInviteID());
+			generator.writeNumberField("userID", invite.getUser().getUserID());
+			generator.writeBooleanField("viewed", invite.isViewed());
+			generator.writeBooleanField("fromEventOwner", invite.isFromEventOwner());
+			generator.writeBooleanField("accepted", invite.isAccepted());
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
 	}
 }

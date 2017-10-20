@@ -6,14 +6,23 @@
 
 package com.cookcollab.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 @Entity
 @Table(name="`user`")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
 	@Id
@@ -37,19 +46,24 @@ public class User {
 	private String bio;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonSerialize(using = EventListSerializer.class)
 	private List<Event> hostEvents;
 
 	@ManyToMany(mappedBy = "guests", fetch = FetchType.LAZY)
+	@JsonSerialize(using = EventListSerializer.class)
 	private List<Event> guestEvents;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonSerialize(using = IngredientListSerializer.class)
 	private List<Ingredient> ingredients;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonSerialize(using = RatingListSerializer.class)
 	private List<Rating> ratings;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	@Where(clause = "accepted = false OR viewed = false")
+	@JsonSerialize(using = InviteListSerializer.class)
 	private List<Invite> invites;
 
 	public long getUserID() {
@@ -164,5 +178,48 @@ public class User {
 	@Override
 	public String toString() {
 		return this.firstName + " " + this.lastName;
+	}
+}
+
+class UserSerializer extends StdSerializer<User>{
+	public UserSerializer(){
+		this(User.class);
+	}
+
+	public UserSerializer(Class<User> user) {
+		super(user);
+	}
+
+	@Override
+	public void serialize(User user, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException {
+		generator.writeStartObject();
+		generator.writeNumberField("userID", user.getUserID());
+		generator.writeStringField("firstName", user.getFirstName());
+		generator.writeStringField("lastName", user.getLastName());
+		generator.writeEndObject();
+	}
+}
+
+class UserListSerializer extends StdSerializer<List<User>>{
+
+	public UserListSerializer() {
+		this(null);
+	}
+
+	public UserListSerializer(Class<List<User>> userList) {
+		super(userList);
+	}
+
+	@Override
+	public void serialize(List<User> users, JsonGenerator generator, SerializerProvider provider)throws IOException, JsonProcessingException {
+		generator.writeStartArray();
+		for (User user : users) {
+			generator.writeStartObject();
+			generator.writeNumberField("userID", user.getUserID());
+			generator.writeStringField("firstName", user.getFirstName());
+			generator.writeStringField("lastName", user.getLastName());
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
 	}
 }
