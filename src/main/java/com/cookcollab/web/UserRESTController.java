@@ -9,10 +9,7 @@ package com.cookcollab.web;
 import com.cookcollab.data.entity.User;
 import com.cookcollab.data.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +31,10 @@ public class UserRESTController {
 	@RequestMapping(method = RequestMethod.GET, value = "/api/user")
 	public List<User> getAllUsers(){
 		return (List<User>) userRepo.findAll();
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/api/user")
+	public User setUsers(@ModelAttribute User user){
+		return userRepo.save(user);
 	}
 }

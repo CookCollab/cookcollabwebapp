@@ -39,4 +39,11 @@ public class UserWebController{
 		model.addAttribute("user", this.userRESTController.getUser(id));
 		return "user-view";
 	}
+
+	@RequestMapping(method= RequestMethod.GET,value="/users/create")
+	public String setUser(Model model){
+		model.addAttribute("user", new User());
+		return "user-create";
+	}
+
 }
